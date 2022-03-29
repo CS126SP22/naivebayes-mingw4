@@ -7,4 +7,4 @@ void prepareSettings(NaiveBayesApp::Settings* settings) {
 }
 
 // This line is a macro that expands into an "int main()" function.
-CINDER_APP(NaiveBayesApp, ci::app::RendererGl, prepareSettings);
+CINDER_APP(NaiveBayesApp, ci::app::RendererGl, prepareSettings)
