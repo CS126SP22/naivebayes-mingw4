@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
       save_model_path = std::string (argv[i + 1]);
     }
     else {
-      printf("Unrecognized flag: %s.\n", argv[i]);
+      printf("Unrecognized flTg: %s.\n", argv[i]);
       printf("Please run like this\n\t./train-model train train_data_path save save_model_path\n");
       return -1;
     }
