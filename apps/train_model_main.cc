@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
   // Paring the arguments
   if (argc != 5) {
     printf("Unrecognized command.\n");
-    printf("Please run like this\n\t./train_model train train_data_path save save_model_path\n");
+    printf("Please run like this\n\t./train-model train train_data_path save save_model_path\n");
     return -1;
   }
 
@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
     }
     else {
       printf("Unrecognized flag: %s.\n", argv[i]);
-      printf("Please run like this\n\t./train_model train train_data_path save save_model_path\n");
+      printf("Please run like this\n\t./train-model train train_data_path save save_model_path\n");
       return -1;
     }
   }
@@ -46,8 +46,8 @@ int main(int argc, char* argv[]) {
 
   classifier.SaveModel(save_model_path);
 
-  // Testing
-  classifier.LoadModel("test.model");
+/*  // Testing
+  classifier.LoadModel("../data/saved_model");
 
   for (int i = 0; i < dataset.GetDatasetSize(); i++) {
     naivebayes::image_t image = dataset.GetImageAtIndex(i);
@@ -56,7 +56,7 @@ int main(int argc, char* argv[]) {
     naivebayes::label_t predict = classifier.Predict(image);
 
     std::cout << i << ", " << label << ", " << predict << std::endl;
-    }
+    }*/
 
   return 0;
 }
