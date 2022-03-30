@@ -46,17 +46,17 @@ int main(int argc, char* argv[]) {
 
   classifier.SaveModel(save_model_path);
 
-  // // Testing
-  // classifier.LoadModel("test.model");
+  // Testing
+  classifier.LoadModel("test.model");
 
-  // for (int i = 0; i < dataset.GetDatasetSize(); i++) {
-  //   naivebayes::image_t image = dataset.GetImageAtIndex(i);
-  //   naivebayes::label_t label = dataset.GetLabelAtIndex(i);
+  for (int i = 0; i < dataset.GetDatasetSize(); i++) {
+    naivebayes::image_t image = dataset.GetImageAtIndex(i);
+    naivebayes::label_t label = dataset.GetLabelAtIndex(i);
 
-  //   naivebayes::label_t predict = classifier.Predict(image);
+    naivebayes::label_t predict = classifier.Predict(image);
 
-  //   std::cout << i << ", " << label << ", " << predict << std::endl;
-  // }
+    std::cout << i << ", " << label << ", " << predict << std::endl;
+    }
 
   return 0;
 }
