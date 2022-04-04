@@ -8,8 +8,9 @@ TEST_CASE("Check dataset loading") {
 
   naivebayes::ImageDataset dataset;
 
+  // simulated dataset containing 3 images each of which has 3x3 size
   std::string test_images_set = "#  \n#  \n#  \n###\n #\n###\n###\n  #\n  #\n";
-
+  // set their label as 1, 2, 7
   std::string test_labels_set = "1\n2\n7\n";
 
   std::istringstream ss(test_images_set);
@@ -19,6 +20,7 @@ TEST_CASE("Check dataset loading") {
   ss.str(test_labels_set);
   ss >> dataset;
 
+  // assert the dataset has red all data
   REQUIRE(dataset.GetDatasetSize() == 3);
   REQUIRE(dataset.GetImageSize() == 3);
   naivebayes::image_t image = dataset.GetImageAtIndex(0);
