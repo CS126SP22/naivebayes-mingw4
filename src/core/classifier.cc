@@ -100,6 +100,27 @@ label_t Classifier::Predict(image_t &image) {
 }
 
 
+float Classifier::Validate(ImageDataset &test_dataset) {
+
+  int _count = 0;
+
+  for (int i = 0; i < test_dataset.GetDatasetSize(); ++i) {
+    image_t image = test_dataset.GetImageAtIndex(i);
+    label_t label = test_dataset.GetLabelAtIndex(i);
+    label_t predict = this->Predict(image);
+
+    if (label == predict) {
+      _count += 1;
+    }
+
+  }
+  float acc = ((float) _count) / test_dataset.GetDatasetSize();
+
+  return acc;
+}
+
+
+
 void Classifier::SaveModel(std::string save_path) {
   std::ofstream ofs(save_path);
 
@@ -125,11 +146,15 @@ void Classifier::SaveModel(std::string save_path) {
 
 
 void Classifier::LoadModel(std::string load_path) {
-  std::ifstream ofs(load_path);
+  std::ifstream ifs(load_path);
 
-  ofs >> trained_image_size;
+  if (!ifs.good()) {
+    std::cout << "Error: no such model file at \"" << load_path << "\"." << std::endl; 
+  }
+
+  ifs >> trained_image_size;
   for (int c = 0; c < 10; c++) {
-    ofs >> P_c[c];
+    ifs >> P_c[c];
   }
 
   int N = trained_image_size;
@@ -150,17 +175,17 @@ void Classifier::LoadModel(std::string load_path) {
 
   for (int c = 0; c < 10; c++) {
     for (int i = 0; i < trained_image_size*trained_image_size; i++) {
-      ofs >> P_x_eq_0_given_c[c][i];
+      ifs >> P_x_eq_0_given_c[c][i];
     }
   }
 
   for (int c = 0; c < 10; c++) {
     for (int i = 0; i < trained_image_size*trained_image_size; i++) {
-      ofs >> P_x_eq_1_given_c[c][i];
+      ifs >> P_x_eq_1_given_c[c][i];
     }
   }
 
-  ofs.close();
+  ifs.close();
 }
 
 std::vector<float> &Classifier::Get_P_c() {

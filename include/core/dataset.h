@@ -18,8 +18,9 @@ class ImageDataset {
   /**
    * Constructs a default image dataset.
    * @param data_path the path of dataset file.
+   * @param train_flag if the dataset is training set.
    */
-  ImageDataset(std::string data_path);
+  ImageDataset(std::string data_path, bool train_flag);
 
   // Getters for the dataset informations.
   int GetDatasetSize() const;

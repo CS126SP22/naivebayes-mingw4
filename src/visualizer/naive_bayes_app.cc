@@ -8,6 +8,7 @@ NaiveBayesApp::NaiveBayesApp()
     : sketchpad_(glm::vec2(kMargin, kMargin), kImageDimension,
                  kWindowSize - 2 * kMargin) {
   ci::app::setWindowSize((int) kWindowSize, (int) kWindowSize);
+  classifier_.LoadModel("./saved.model");
 }
 
 void NaiveBayesApp::draw() {
@@ -38,8 +39,11 @@ void NaiveBayesApp::keyDown(ci::app::KeyEvent event) {
     case ci::app::KeyEvent::KEY_RETURN:
       // ask your classifier to classify the image that's currently drawn on the
       // sketchpad and update current_prediction_
-      break;
-
+      {
+        image_t image = sketchpad_.GetImage();
+        current_prediction_ = classifier_.Predict(image);
+        break;
+      }
     case ci::app::KeyEvent::KEY_DELETE:
       sketchpad_.Clear();
       break;

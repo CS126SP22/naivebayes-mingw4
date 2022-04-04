@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
   // Paring the arguments
   if (argc != 5) {
     printf("Unrecognized command.\n");
-    printf("Please run like this\n\t./train-model train train_data_path save save_model_path\n");
+    printf("Please run like this\n\t./train_model train train_data_path save save_model_path\n");
     return -1;
   }
 
@@ -24,8 +24,8 @@ int main(int argc, char* argv[]) {
       save_model_path = std::string (argv[i + 1]);
     }
     else {
-      printf("Unrecognized flTg: %s.\n", argv[i]);
-      printf("Please run like this\n\t./train-model train train_data_path save save_model_path\n");
+      printf("Unrecognized flag: %s.\n", argv[i]);
+      printf("Please run like this\n\t./train_model train train_data_path save save_model_path\n");
       return -1;
     }
   }
@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
   }
 
 
-  naivebayes::ImageDataset dataset(train_data_path);
+  naivebayes::ImageDataset dataset(train_data_path, true);
   // dataset.PrintInfo();
 
   naivebayes::Classifier classifier;
@@ -46,17 +46,17 @@ int main(int argc, char* argv[]) {
 
   classifier.SaveModel(save_model_path);
 
-/*  // Testing
-  classifier.LoadModel("../data/saved_model");
+  // // Testing
+  // classifier.LoadModel("test.model");
 
-  for (int i = 0; i < dataset.GetDatasetSize(); i++) {
-    naivebayes::image_t image = dataset.GetImageAtIndex(i);
-    naivebayes::label_t label = dataset.GetLabelAtIndex(i);
+  // for (int i = 0; i < dataset.GetDatasetSize(); i++) {
+  //   naivebayes::image_t image = dataset.GetImageAtIndex(i);
+  //   naivebayes::label_t label = dataset.GetLabelAtIndex(i);
 
-    naivebayes::label_t predict = classifier.Predict(image);
+  //   naivebayes::label_t predict = classifier.Predict(image);
 
-    std::cout << i << ", " << label << ", " << predict << std::endl;
-    }*/
+  //   std::cout << i << ", " << label << ", " << predict << std::endl;
+  // }
 
   return 0;
 }

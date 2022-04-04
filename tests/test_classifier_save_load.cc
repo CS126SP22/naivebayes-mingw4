@@ -26,11 +26,11 @@ TEST_CASE("Check classifier save and load") {
 
   classifier.Fit(dataset);
 
-  classifier.SaveModel("saved.model");
+  classifier.SaveModel("_test_saved.model");
 
   naivebayes::Classifier new_classifier;
 
-  new_classifier.LoadModel("saved.model");
+  new_classifier.LoadModel("_test_saved.model");
 
   REQUIRE(new_classifier.GetTrainedImageSize() == classifier.GetTrainedImageSize());
 

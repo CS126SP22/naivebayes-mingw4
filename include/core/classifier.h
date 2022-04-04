@@ -30,6 +30,13 @@ class Classifier {
   label_t Predict(image_t &image);
 
   /**
+   * Validate the given test dataset.
+   * @param test_dataset The given image test dataset to be Validated.
+   * @return the predicted accuracy.
+   */
+  float Validate(ImageDataset &test_dataset);
+
+  /**
    * Save model parameters.
    * @param save_path the saved model path
    */

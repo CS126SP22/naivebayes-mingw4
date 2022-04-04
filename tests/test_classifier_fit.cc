@@ -22,7 +22,6 @@ TEST_CASE("Check classifier computing") {
   ss.str(test_labels_set);
   ss >> dataset;
 
-
   classifier.Fit(dataset);
 
   REQUIRE(classifier.Predict(dataset.GetImageAtIndex(0)) == 1);

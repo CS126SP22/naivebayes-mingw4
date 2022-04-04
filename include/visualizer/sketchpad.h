@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cinder/gl/gl.h"
+#include <core/dataset.h>
 
 namespace naivebayes {
 
@@ -49,7 +50,14 @@ class Sketchpad {
    */
   void Clear();
 
+  /**
+   * Get the sketched image of the sketchpad.
+   */
+  image_t GetImage() const ;
+
  private:
+  image_t sketched_image_;
+
   glm::vec2 top_left_corner_;
 
   size_t num_pixels_per_side_;

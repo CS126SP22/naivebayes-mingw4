@@ -8,20 +8,30 @@ ImageDataset::ImageDataset() {
 
 }
 
-ImageDataset::ImageDataset(std::string data_path) {
-  std::string images_data_file = data_path + "/" + "trainingimages";
-  std::string labels_data_file = data_path + "/" + "traininglabels";
+ImageDataset::ImageDataset(std::string data_path, bool train_flag) {
 
-  // Loading images data
-  std::ifstream infile;
-  infile.open(images_data_file);
-  infile >> *this;
-  infile.close();
+  if (train_flag) {
+    std::string images_data_file = data_path + "/" + "trainingimages";
+    std::string labels_data_file = data_path + "/" + "traininglabels";
 
-  // Loading labels data
-  infile.open(labels_data_file);
-  infile >> *this;
-  infile.close();
+    // Loading images data
+    std::ifstream infile;
+    infile.open(images_data_file);
+    infile >> *this;
+    infile.close();
+
+    // Loading labels data
+    infile.open(labels_data_file);
+    infile >> *this;
+    infile.close();
+  } else {
+    // Loading data
+    std::ifstream infile;
+    infile.open(data_path);
+    infile >> *this;
+    infile.close();
+  }
+
 }
 
 int ImageDataset::GetDatasetSize() const {

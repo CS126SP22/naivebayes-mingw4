@@ -60,6 +60,7 @@ list(APPEND SOURCE_FILES    ${CORE_SOURCE_FILES}
 list(APPEND TEST_FILES tests/test_dataset.cc)
 list(APPEND TEST_FILES tests/test_classifier_fit.cc)
 list(APPEND TEST_FILES tests/test_classifier_save_load.cc)
+list(APPEND TEST_FILES tests/test_classifier_valid.cc)
 
 
 add_executable(train-model apps/train_model_main.cc ${CORE_SOURCE_FILES})
